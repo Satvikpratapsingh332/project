@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Satvik Singh - Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #333;
+      padding: 1rem 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #555;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    #home .profile-pic {
+      width: 150px;
+      border-radius: 50%;
+      border: 4px solid #333;
+    }
+
+    #about p {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+
+    .project-gallery {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 250px;
+      text-align: left;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      height: 150px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    form input,
+    form textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    form button {
+      padding: 0.8rem;
+      border: none;
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .project-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home -->
+  <section id="home">
+    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+    <h1>Hello, I'm Satvik Singh</h1>
+    <p>A passionate web developer who loves creating interactive and responsive websites.</p>
+    <p>Welcome to my portfolio!</p>
+    <p>Feel free to explore my projects and get in touch!</p>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p><strong>Education:</strong> BCA in Computer Science -- United University</p>
+    <p><strong>Experience:</strong> Intern at Eduonix lerning solutions</p>
+    <p><strong>Hobbies:</strong> Coding, Music, Traveling</p>
+  </section>
+
+ <!-- Projects -->
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="project-gallery">
+
+    <div class="project-card">
+      <a href="index.html" target="_blank">
+        <img src="project1.jpg" alt="Basic Calculator">
+        <h3>Basic Calculator</h3>
+        <p>A user-friendly project to perform basic arithmetic operations.</p>
+      </a>
+    </div>
+
+    <div class="project-card">
+      <img src="project2.jpg" alt="To-Do List">
+      <h3>To-Do List</h3>
+      <p>Simple task manager with local storage to keep track of daily tasks.</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <input type="text" id="subject" placeholder="Subject" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    // Highlight active nav link on click
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+      link.addEventListener('click', function () {
+        links.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Form Validation
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contactForm");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const subject = document.getElementById("subject").value.trim();
+          const message = document.getElementById("message").value.trim();
+
+          if (!name || !email || !subject || !message) {
+            alert("Please fill in all fields.");
+            e.preventDefault();
+            return;
+          }
+
+          const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+          if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            e.preventDefault();
+          } else {
+            alert("Message sent successfully!");
+            form.reset();
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
